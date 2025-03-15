@@ -23,9 +23,7 @@ target_link_libraries(boost_unordered
     Boost::throw_exception
 )
 
-message(FATAL_ERROR "lmao")
-
-if(CMAKE_VERSION VERSION_GREATER 3.18 AND CMAKE_GENERATOR MATCHES "Visual Studio")
+if(CMAKE_VERSION VERSION_GREATER 3.18 )
 
   file(GLOB_RECURSE boost_unordered_IDEFILES CONFIGURE_DEPENDS include/*.hpp)
   source_group(TREE ${PROJECT_SOURCE_DIR}/include FILES ${boost_unordered_IDEFILES} PREFIX "Header Files")
