@@ -23,11 +23,10 @@ target_link_libraries(boost_unordered
     Boost::throw_exception
 )
 
-if(CMAKE_VERSION VERSION_GREATER 3.18 )
+if(CMAKE_VERSION VERSION_GREATER 3.18 AND CMAKE_HOST_WIN32)
 
   file(GLOB_RECURSE boost_unordered_IDEFILES CONFIGURE_DEPENDS include/*.hpp)
   source_group(TREE ${PROJECT_SOURCE_DIR}/include FILES ${boost_unordered_IDEFILES} PREFIX "Header Files")
-  list(APPEND boost_unordered_IDEFILES extra/boost_unordered.natvis)
   target_sources(boost_unordered PRIVATE ${boost_unordered_IDEFILES})
   target_sources(
     boost_unordered
