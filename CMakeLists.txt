@@ -28,7 +28,14 @@ if(CMAKE_VERSION VERSION_GREATER 3.18 )
   file(GLOB_RECURSE boost_unordered_IDEFILES CONFIGURE_DEPENDS include/*.hpp)
   source_group(TREE ${PROJECT_SOURCE_DIR}/include FILES ${boost_unordered_IDEFILES} PREFIX "Header Files")
   list(APPEND boost_unordered_IDEFILES extra/boost_unordered.natvis)
-  target_sources(boost_unordered PUBLIC ${boost_unordered_IDEFILES})
+  target_sources(boost_unordered PRIVATE ${boost_unordered_IDEFILES})
+  target_sources(
+    boost_unordered
+    PUBLIC
+      $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/extra/boost_unordered.natvis>
+      $<INSTALL_INTERFACE:${CMAKE_INSTALL_PREFIX}/share/natvis/boost_unordered.natvis>
+  )
+  install(FILES "extra/boost_unordered.natvis" DESTINATION ${CMAKE_INSTALL_PREFIX}/share/natvis)
 
 endif()
 
